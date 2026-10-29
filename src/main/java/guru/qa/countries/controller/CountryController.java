@@ -4,6 +4,7 @@ import guru.qa.countries.domain.CountryResponse;
 import guru.qa.countries.domain.UpdateCountryNameRequest;
 import guru.qa.countries.domain.CreateCountryRequest;
 import guru.qa.countries.service.CountryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ public class CountryController {
 
     private final CountryService countryService;
 
+    @Autowired
     public CountryController(CountryService countryService) {
         this.countryService = countryService;
     }

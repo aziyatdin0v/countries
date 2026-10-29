@@ -8,6 +8,7 @@ import guru.qa.countries.domain.CreateCountryRequest;
 import guru.qa.countries.exception.CountryAlreadyExistsException;
 import guru.qa.countries.exception.CountryNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class DbCountryService implements CountryService {
 
     private final CountriesRepository countriesRepository;
 
+    @Autowired
     public DbCountryService(CountriesRepository countriesRepository) {
         this.countriesRepository = countriesRepository;
     }
@@ -60,7 +62,7 @@ public class DbCountryService implements CountryService {
         return toCountryResponse(countriesRepository.save(countryEntity));
     }
 
-    private CountryResponse toCountryResponse(CountryEntity entity) {
-        return new CountryResponse(entity.getId(), entity.getCode(), entity.getName());
+    private CountryResponse toCountryResponse(CountryEntity countryEntity) {
+        return new CountryResponse(countryEntity.getId(), countryEntity.getCode(), countryEntity.getName());
     }
 }
